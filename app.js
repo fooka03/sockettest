@@ -14,7 +14,7 @@ var makeConnection = function() {
       chat.emit('chat message', 'hi! from client: ' + myCon + ' and host: ' + os.hostname() + ' and time: ' + new Date().getTime());
     }, 5000);
     chat.on('chat message', function(msg){
-      console.log(new Date().getTime() + ' - message: ' + msg);
+      //console.log(new Date().getTime() + ' - message: ' + msg);
     });
   });
   idx++;
