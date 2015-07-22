@@ -7,10 +7,11 @@ var heartbeatInterval = 25 * 1000;
 var idx = 0;
 var intervalID;
 var makeConnection = function() {
-  var chat = io.connect('http://socket-test.cloudapp.net', { "force new connection": true });
+  var chat = io.connect('http://socket-test.cloudapp.net', { "force new connection": true, "transports": ['websocket'] });
   chat.on('connect', function () {
+    var myCon = idx;
     setTimeout(function() {
-      chat.emit('chat message', 'hi! from idx: ' + idx + ' and host: ' + os.hostname() + ' and time: ' + new Date().getTime());
+      chat.emit('chat message', 'hi! from client: ' + myCon + ' and host: ' + os.hostname() + ' and time: ' + new Date().getTime());
     }, 5000);
     chat.on('chat message', function(msg){
       console.log(new Date().getTime() + ' - message: ' + msg);
