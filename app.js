@@ -2,12 +2,13 @@ var argv = require('minimist')(process.argv.slice(2));
 var os = require('os');
 var io = require("socket.io-client");
 var clientCount = argv.c;
+var serverUrl = argv.s;
 
 var heartbeatInterval = 25 * 1000;
 var idx = 0;
 var intervalID;
 var makeConnection = function() {
-  var chat = io.connect('http://socket-test.cloudapp.net', { "force new connection": true, "transports": ['websocket'] });
+  var chat = io.connect(serverUrl, { "force new connection": true, "transports": ['websocket'] });
   chat.on('connect', function () {
     var myCon = idx;
     setTimeout(function() {
